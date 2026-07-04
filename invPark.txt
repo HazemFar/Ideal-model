@@ -5,7 +5,7 @@ Rbeta beta  0 1e15
 Rtheta theta  0 1e15
 RparkD parkD  0 1e15
 RparkQ parkQ 0 1e15
-
+*Calculting inverse Park equations
 
 
 Bsin thetasin 0 V = sin( V(theta) )
