@@ -1,3 +1,4 @@
+*generating FOC switching pattern using Vsn voltage injection(triangular wave injection)
 .SUBCKT SVPWM_REF A B C AP BP CP
 
 
@@ -7,10 +8,12 @@ Rbn B 0 100MEG
 Rcn C 0 100MEG
 
 
-.func getmaximum(AN,BN,CN) {max(max(AN,BN),CN)}
-.func getminimum(AN,BN,CN) {min(min(AN,BN),CN)}
+.func getmaximum(AN,BN,CN) {max(max(AN,BN),CN)};Get maximum
+.func getminimum(AN,BN,CN) {min(min(AN,BN),CN)};Get minimum
 Rcalcoffset calc_offset 0 0.5
-Goffset  calc_offset 0 value={ getmaximum(V(A),V(B),V(C)) + getminimum(V(A),V(B),V(C))}
+
+*Note : -ve sign is the direction of the current source
+Goffset  calc_offset 0 value={ getmaximum(V(A),V(B),V(C)) + getminimum(V(A),V(B),V(C))};V_offset=-(Vmax+Vmin)/2
 
 
 
