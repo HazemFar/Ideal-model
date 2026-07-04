@@ -12,13 +12,11 @@ Raswd SWCHAD 0 1G
 Rbswd SWCHBD 0 1G
 Rcswd SWCHCD 0 1G
 Rvdc VDC 0 100MEG
-*Ctri TRIGWAVE 0 1.04u
 Rsq TRIGWAVE 0 1G
 
 Vtri  TRIGWAVE 0 pulse({-1*0.5*VDC} {0.5*VDC} 0 {0.5*T} {0.5*T} 0 {T})
 
-*Gsq TRIGWAVE 0  value={idt(V(SQWAVE),10u,if( (V(TRIGWAVE)>VDC/2)|(V(TRIGWAVE)<-1*VDC/2),1,0 ) )}
-*Gsq TRIGWAVE 0  value={if( (V(TRIGWAVE)>VDC/2)|(V(TRIGWAVE)<-1*VDC/2),0,V(SQWAVE)) }
+
 Bswa SWCHA 0 v = if(V(AP)>V(TRIGWAVE),10,-10)
 Bswb SWCHB 0 v = if(V(BP)>V(TRIGWAVE),10,-10)
 Bswc SWCHC 0 v = if(V(CP)>V(TRIGWAVE),1,-1)
