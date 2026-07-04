@@ -1,6 +1,8 @@
+This script is generting triangular wave 
+
 .SUBCKT SWTCHGen AP BP CP SWCHA  SWCHB  SWCHC SWCHAD  SWCHBD  SWCHCD TRIGWAVE
-.param VDC = 96
-.param T = 100u
+.param VDC = 96 ;DC bus voltage
+.param T = 100u ;Switching frequency
 
 Rap AP 0 1G
 RbP BP 0 1G
@@ -16,11 +18,11 @@ Rsq TRIGWAVE 0 1G
 
 Vtri  TRIGWAVE 0 pulse({-1*0.5*VDC} {0.5*VDC} 0 {0.5*T} {0.5*T} 0 {T})
 
-
+*  Upper switch is on if the triangular wave<referance wave
 Bswa SWCHA 0 v = if(V(AP)>V(TRIGWAVE),10,-10)
 Bswb SWCHB 0 v = if(V(BP)>V(TRIGWAVE),10,-10)
 Bswc SWCHC 0 v = if(V(CP)>V(TRIGWAVE),1,-1)
-
+* Lower switch is on if the triangular wave>referance wave
 Bswad SWCHAD 0 v = if(V(AP)<V(TRIGWAVE),10,-10)
 Bswbd SWCHBD 0 v = if(V(BP)<V(TRIGWAVE),10,-10)
 Bswcd SWCHCD 0 v = if(V(CP)<V(TRIGWAVE),10,-10)
