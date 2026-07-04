@@ -1,6 +1,6 @@
 .subckt invclarcke A B C alpha beta
-Ba A 0 V = V(alpha)
-Bb B 0 V = 0.5 * ( -V(alpha) + sqrt(3)*V(beta) )
+Ba A 0 V = V(alpha) ; Inverse Clarcke equations
+Bb B 0 V = 0.5 * ( -V(alpha) + sqrt(3)*V(beta) ) 
 Bc C 0 V = -0.5 * ( V(alpha) + sqrt(3)*V(beta) )
 Ra A 0 1e17
 Rb B 0 1e17
