@@ -11,11 +11,8 @@ Rcn C 0 100MEG
 .func getminimum(AN,BN,CN) {min(min(AN,BN),CN)}
 Rcalcoffset calc_offset 0 0.5
 Goffset  calc_offset 0 value={ getmaximum(V(A),V(B),V(C)) + getminimum(V(A),V(B),V(C))}
-*calc_min= getMIN(V(A),V(B),V(C))
-*calc_max= getMAX(V(A),V(B),V(C))
-*.func calc_off() {-0.5* (calc_min + calc_max ) }
 
-*.func calc_off(V(AN),V(BN),V(CN)) {-0.5* (getMAX(V(AN),V(BN),V(CN)) + getMIN(V(AN),V(BN),V(CN)) ) }
+
 
 *Rrap AP 0 100MEG
 *Rrbp BP 0 100MEG
