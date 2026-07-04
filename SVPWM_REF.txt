@@ -14,17 +14,10 @@ Goffset  calc_offset 0 value={ getmaximum(V(A),V(B),V(C)) + getminimum(V(A),V(B)
 
 
 
-*Rrap AP 0 100MEG
-*Rrbp BP 0 100MEG
-*Rrcp CP 0 100MEG
-*.ic V(A) =0
-*.ic V(B) =0
-*.ic V(C) =0
+
 Bvap AP 0 v = V(A)+V(calc_offset)  ;voltage of the pole
 Bvbp BP 0 v = V(B)+V(calc_offset)
 Bvcp CP 0 v = V(C)+V(calc_offset)
 
-*Bap AP 0 V=V(A)+calc_off(V(A),V(B),V(C))  ;voltage of the pole
-*Bbp BP 0 V=V(B)+calc_off(V(A),V(B),V(C))
-*Bcp CP 0 V=V(C)+calc_off(V(A),V(B),V(C))
+
 .ENDS SVPWM_REF
