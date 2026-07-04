@@ -11,10 +11,7 @@
 .param J = 8.42e-4        ; Rotor moment of inertia (kg*m^2)
 .param B = 0.05           ; Friction coefficient (Nm/(rad/s))
 
-* ============================================================
-* 2. CREATE VIRTUAL NEUTRAL (for correct phase voltage sensing)
-* ============================================================
-* The neutral voltage is the average of the three phase voltages
+
 
 
 * ===================================.=========================
@@ -37,13 +34,11 @@ Rangle theta 0 1e12
 * ============================================================
 * d-axis circuit: Vd = Rs*Id + Ld*dId/dt - We*Lq*Iq
 Ld Vd dmid {Ld} IC=0
-*Rd dmid 0 {Rs}
 Rd dmid dcom {Rs}
 Bcrossd dcom 0 V = - V(wm) * PolePairs * {Lq} * I(Lq)
 
 * q-axis circuit: Vq = Rs*Iq + Lq*dIq/dt + We*(Ld*Id + LambdaPM)
 Lq Vq qmid {Lq} IC=0
-*Rq qmid 0 {Rs}
 Rq qmid qcom {Rs}
 Bcrossq qcom 0 V = V(wm) * PolePairs * ( {Ld}*I(Ld) + {LambdaPM} )
 
