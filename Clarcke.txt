@@ -1,0 +1,11 @@
+.subckt clarcke A B C alpha beta Vn
+Bneutral VN 0 V = (V(A) + V(B) + V(C)) / 3
+Ra A 0 1e15
+Rb B 0 1e15
+Rc C 0 1e15
+RVn Vn 0 1e15
+Ralpha alpha 0 1e15
+Rbeta beta 0 1e15
+Bclarkealpha alpha 0 V = (2/3)*( (V(A)-V(VN)) - 0.5*((V(B)-V(VN))+(V(C)-V(VN))) )
+Bclarkebeta  beta  0 V = (1/sqrt(3))*( (V(B)-V(VN)) - (V(C)-V(VN)) )
+.ends clarcke

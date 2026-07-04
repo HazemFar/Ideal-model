@@ -1,0 +1,14 @@
+.subckt ff vd vq vdff vqff wm id iq
+
+.param Ld = 0.15m         ; d-axis inductance (Henry)
+.param Lq = 0.15m         ; q-axis inductance (Henry)
+.param LambdaPM = 0.08    ; Permanent magnet flux linkage (Weber)
+.param PolePairs = 4      ; Number of pole pairs
+
+
+Bdff dff 0 V = -1*V(wm) * PolePairs * {Lq} * V(iq)
+Bqff qff 0 V = V(wm) * PolePairs * ({Ld} * V(id) + {LambdaPM})
+
+Bdf vdff 0 V = max(min(V(vd) + V(dff),96/sqrt(3)),-96/sqrt(3))
+Bqf vqff 0 V = max(min(V(vq) + V(qff),96/sqrt(3)),-96/sqrt(3))
+.ENDS ff
