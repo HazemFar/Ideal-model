@@ -1,0 +1,28 @@
+.subckt PI input out ref params: Kp=0.15, Ki=18, Kaw=60, limmax=100
+
+*.param Kp = 0.15
+*.param Ki = 18
+*.param Kaw = 60
+*.param limmax = 100
+
+Rinput input  0 1e15
+Rout out  0 1e15
+Rtheta theta  0 1e15
+Rref ref  0 1e15
+
+
+Rerror error 0 1e12
+Rprop prop 0 1e12
+Rsum sum 0 1e12
+Rlim lim 0 1e12
+Berror error 0 V=V(ref)-V(input)
+Bpropw prop 0 V = {Kp} * V(error)
+Bsum sum 0 V = V(prop) + V(int)
+Blim lim 0 V = max(min( V(sum), {limmax}), -1*{limmax})
+*Blim lim 0 V = V(sum)
+Bawfb awfb 0 V = V(lim) - V(sum)
+Gint 0 int VALUE = {{Ki} * V(error)} ;+ {Kaw} * V(awfb)
+Cint int 0 1 IC=0
+Rint int 0 1e12
+
+Bout out 0 V= V(lim)
